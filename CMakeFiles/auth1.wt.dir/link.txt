@@ -1,1 +1,0 @@
-/usr/bin/c++       CMakeFiles/auth1.wt.dir/Auth1.o CMakeFiles/auth1.wt.dir/model/Session.o CMakeFiles/auth1.wt.dir/model/User.o  -o auth1.wt -rdynamic -lwt -lwtdbo -lwtdbosqlite3 
