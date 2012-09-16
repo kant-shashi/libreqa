@@ -1,9 +1,8 @@
-WT_ADD_EXAMPLE(auth1.wt 
+WT_ADD_EXAMPLE(libreqa 
         Auth1.C
 	model/Session.C
 	model/User.C
 )
 
-TARGET_LINK_LIBRARIES(auth1.wt wtdbo wtdbosqlite3)
+TARGET_LINK_LIBRARIES(libreqa wtdbo wtdbosqlite3)
 
-INCLUDE_DIRECTORIES(${WT_SOURCE_DIR}/src)
