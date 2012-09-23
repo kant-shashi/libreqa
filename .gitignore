@@ -1,0 +1,10 @@
+*.idx
+*.ind
+*.out
+*.aux
+*.ilg
+*.log
+*.toc
+*.ist
+*.cls
+*.sty
