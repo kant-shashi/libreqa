@@ -41,7 +41,7 @@
 
 
 \title{Low Level Design Documentation}
-\date{September 23, 2012}
+\date{October 06, 2012}
 \release{0.1}
 \author{Shiv Shankar Dayal \& Pavan Sharma}
 \newcommand{\sphinxlogo}{}
@@ -198,6 +198,96 @@ image was shamelessly copied from \href{http://www.mongodb.org}{http://www.mongo
 {\hfill\includegraphics{sharding.PNG}\hfill}
 
 User can hit MongoDB's website to know about it.
+
+
+\section{Models}
+\label{arch:models}
+
+\subsection{Questions \& Answers}
+\label{arch:questions-answers}
+Folowing model(read collection) is in picture for questions and answers:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZob{}
+        Questions : \PYGZob{}
+                Question no. : Long Long,
+                title        : String,
+                Body             : html,
+                tags             : Sorted List of Strings,
+                view             : Integer,
+                votes            : Integer,
+                favorite         : Inetger,
+                timestamp        : Timestamp,
+                Followers        : List of users,
+                Comments         :List of comments \PYGZob{}
+                        comment    : String,
+                        timestamp  : TimeStamp,
+                        commeneter : user,
+                \PYGZcb{},
+                answers : List of answers \PYGZob{}
+                        Answer id : Long Long,
+                        answer    : String,
+                        accepted  : Boolean,
+                        votes     : Integer,
+                        Comments  : List of comments \PYGZob{}
+                                comment    : String,
+                                timestamp  : TimeStamp,
+                                commeneter : user,
+                        \PYGZcb{},
+                \PYGZcb{},
+        \PYGZcb{},
+\PYGZcb{}
+\end{Verbatim}
+
+Following model(read collection) is for users:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZob{}
+        Users: \PYGZob{}
+                Name              : String,
+                Email id          : String,
+                URL                       : String,
+                Date of Birth : Date,
+                Karma             : Long Long,
+                Skills            : Tags,
+                Badges            : List of Badges \PYGZob{}
+                        Badge Name        : Name,
+                        Date Acquired : Date,
+                \PYGZcb{},
+                Questions : List of Questions Asked \PYGZob{}
+                        Question URL : String,
+                \PYGZcb{},
+                Answers : List of Answers Given \PYGZob{}
+                        Question URL with answer ref: URL,
+                \PYGZcb{}
+        \PYGZcb{}
+\PYGZcb{}
+\end{Verbatim}
+
+Following collection is for tags:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZob{}
+        Tags : \PYGZob{}
+                Name : String,
+                Count : Integer,
+                links : List of question for that tag \PYGZob{}
+                        link: URL
+                \PYGZcb{}
+        \PYGZcb{}
+\PYGZcb{}
+\end{Verbatim}
+
+Following collection is for badges:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZob{}
+        Badges : \PYGZob{}
+                Users : List of people having that badge,
+                Count : Long Long,
+        \PYGZcb{}
+\PYGZcb{}
+\end{Verbatim}
 
 
 \chapter{Indices and tables}
