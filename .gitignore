@@ -1,3 +1,6 @@
+.kdev4/
+build/
+libreqa.kdev4
 *.idx
 *.ind
 *.out
