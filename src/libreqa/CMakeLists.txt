@@ -60,6 +60,7 @@ set(QA_SRC
 #	apps/blog/page.cpp
 #	add_executable(cppblog_migrate sql/migrate.cpp)
 	apps/questions/questions.cpp
+	apps/questions/home.cpp
 #	apps/blog/summary.cpp
 #	apps/feed/feed.cpp
 	apps/basic_master.cpp
@@ -76,9 +77,42 @@ set(QA_SRC
 #	apps/admin/comment.cpp
 #	apps/admin/categories.cpp
 #	"${CMAKE_CURRENT_BINARY_DIR}/master.cpp"
-#	"${CMAKE_CURRENT_BINARY_DIR}/admin.cpp"
+#	"${CMAKE_CURRENT_BINARY_DIR}/home.cpp"
 	)
 	
+	
+foreach(SKIN ${SKINS})
+	set(VIEW_NAME ${SKIN})
+	set(VIEW_TEMPLATES 
+		views/basic_master.tmpl
+		views/skins/${SKIN}.tmpl
+		#views/blog/post.tmpl
+		#views/blog/page.tmpl
+		views/questions/home.tmpl
+		)
+
+	set(VIEW_SRC "${CMAKE_CURRENT_BINARY_DIR}/${VIEW_NAME}.cpp")
+
+	add_custom_command(
+		OUTPUT ${VIEW_SRC}
+		COMMAND ${EXE_TMPL_CC}
+			-s "${VIEW_NAME}"
+			${TMPL_CC_PARAMS}
+			-o ${VIEW_SRC}
+ 			${VIEW_TEMPLATES}
+		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+		DEPENDS ${VIEW_TEMPLATES})
+
+
+	if(STATIC_VIEW)
+		set(QA_SRC ${QA_SRC} ${VIEW_SRC})
+	else()
+		add_library(${VIEW_NAME} SHARED ${VIEW_SRC})
+		target_link_libraries(${VIEW_NAME} ${LIB_CPPCMS})
+		target_link_libraries(${VIEW_NAME} ${LIB_BOOSTER})
+	endif()
+endforeach()
+
 # Actual Build
 
 include_directories(${INC_BOOSTER})
@@ -87,4 +121,8 @@ include_directories(${INC_CPPCMS})
 add_executable(libreqa ${QA_SRC})
 target_link_libraries(libreqa ${LIB_CPPCMS})
 target_link_libraries(libreqa ${LIB_BOOSTER})
+target_link_libraries(libreqa ${IM_LIBRARIES})
 add_subdirectory(apps/questions)
+add_subdirectory(data)
+add_subdirectory(views)
+add_subdirectory(media)

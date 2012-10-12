@@ -2,6 +2,7 @@
 #include <cppcms/url_mapper.h>
 #include <cppcms/url_dispatcher.h>
 #include <cppcms/cache_interface.h>
+
 //#include <apps/blog/page.h>
 //#include <apps/blog/post.h>
 //#include <apps/blog/summary.h>
@@ -23,14 +24,11 @@ namespace apps {
 				"summary",
 				"{1}",
 				".*",0);*/
-			dispatcher().assign("",&all,this);
+			dispatcher().assign("",&questions_master::all,this);
 			mapper().assign("");
 		}
-		questions_master::all() {
-				if(user_.empty()) {
-				response().make_error_response(cppcms::http::response::forbidden);
-				return;
-			}
+		void questions_master::all() {
+			response().out()<<"gwfhwe";
 			//prepare(id,true);
 		}
 	} // questions

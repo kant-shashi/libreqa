@@ -35,7 +35,7 @@ void master::load_sidebar(data::questions::master &c)
 		return;
 	cppcms::triggers_recorder recorder(cache());
 	
-	cppdb::result r;
+/*	cppdb::result r;
 
 	r=sql()<<
 		"SELECT	id,title "
@@ -57,7 +57,7 @@ void master::load_sidebar(data::questions::master &c)
 	while(r.next()) {
 		c.sidebar.cats.resize(c.sidebar.cats.size()+1);
 		r >> c.sidebar.cats.back().id >> c.sidebar.cats.back().name;
-	}
+	}*/
 
 	cache().add_trigger("cats");
 	cache().add_trigger("general_info");

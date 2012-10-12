@@ -2,11 +2,12 @@
 #include <cppcms/application.h>
 #include <apps/questions/master.h>
 #include <cppcms/http_response.h>
+#include <data/questions/master.h>
 namespace apps {
-	namespace questions {
-		class questions_master : public cppcms::application {
+	namespace home {
+		class home_master : public cppcms::application {
 		public:
-			questions_master(cppcms::service &srv);
+			home_master(cppcms::service &srv);
 			void all();
 		};
 	}

@@ -29,12 +29,12 @@
 		]
 		
 	},
-	"views" : {
-		 //"default_skin" : "contendend" ,
-		 "default_skin" : "orangesky" ,
-		 "paths" : [ "./" ],
-		 "skins" : [ "contendend" , "orangesky" ],
-	},
+	//"views" : {
+	//	 "default_skin" : "green" ,
+	//	 "default_skin" : "orangesky" ,
+	//	 "paths" : [ "./" ],
+	//	 "skins" : [ "green" ],
+	//},
 	"file_server" : {
 		"enable" : true,
 		"document_root" : "../"

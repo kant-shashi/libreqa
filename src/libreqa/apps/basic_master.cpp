@@ -104,7 +104,7 @@ std::string filter(std::string const &html)
 	std::string result(content_ptr,content_size);
 	mkd_cleanup(doc);
 	return result;
-*/}
+}*/
 
 class tex_to_gif {
 public:
@@ -326,7 +326,6 @@ std::string latex_filter(std::string const &in)
 
 
 namespace apps {
-	namespace {
 	void init_tex_filer(cppcms::json::value const &s)
 	{
 		if(s.get("blog.tex.enable",false)) {

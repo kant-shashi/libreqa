@@ -3,12 +3,8 @@
 #include <cppcms/base_content.h>
 #include <apps/basic_master.h>
 
-namespace cppdb {
-	class session;
-}
-
 namespace data { 
-	namespace blog {
+	namespace questions {
 		struct master;
 	}
 }
@@ -16,7 +12,7 @@ namespace data {
 
 namespace apps {
 
-	namespace blog {
+	namespace questions {
 
 		class master : public basic_master {
 		public:
@@ -25,9 +21,9 @@ namespace apps {
 			
 			virtual void init();
 			virtual void clear();
-			void load_sidebar(data::blog::master &c);
+			void load_sidebar(data::questions::master &c);
 		protected:
-			void prepare(data::blog::master &c);
+			void prepare(data::questions::master &c);
 			std::string user_;
 		};
 	} // blog
