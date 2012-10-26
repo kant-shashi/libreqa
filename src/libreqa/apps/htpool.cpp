@@ -1,15 +1,15 @@
 #include <apps/htpool.h>
 
-static HtPool* HtPool::instance_ = NULL;
+HtPool* HtPool::instance_ = NULL;
 
-static HtPool* HtPool::getInstance(pool_size, std::string host, int port)
+HtPool* HtPool::getInstance(int pool_size, std::string host, int port)
 {
 	if(!instance_)
 	{
 		instance_ = new HtPool(pool_size, host, port);
 		return instance_;
 	}
-	retrun instance_;
+	return instance_;
 }
 
 HtPool::HtPool(int pool_size, std::string host, int port)
@@ -19,7 +19,7 @@ HtPool::HtPool(int pool_size, std::string host, int port)
 	{
 		HtClient* ht = new HtClient(host_, port_, i);
 		
-		clients.push_back(ht);
+		clients_.push_back(ht);
 	}
 	pthread_mutex_init(&ht_mutex, NULL);
 }
@@ -27,19 +27,19 @@ HtPool::HtPool(int pool_size, std::string host, int port)
 HtClient* HtPool::getClientConnection()
 {
 	pthread_mutex_lock(&ht_mutex);
-	for(int i=0; i<pool_size; i++)
+	for(int i=0; i<pool_size_; i++)
 	{
-		if(clients[i].inUse == false)
+		if(clients_[i]->inUse == false)
 		{
-			clients[i].inUse = true;
+			clients_[i]->inUse = true;
 			pthread_mutex_unlock(&ht_mutex);
-			return clients[i];
+			return clients_[i];
 		}
 	}
 	
-	HtClient* ht = new HtClient(host, port, clients.size()+1);
+	HtClient* ht = new HtClient(host_, port_, clients_.size()+1);
 	
-	clients.push_back(ht);
+	clients_.push_back(ht);
 	pthread_mutex_unlock(&ht_mutex);
 	return ht;
 }
@@ -49,11 +49,11 @@ void HtPool::releaseClientConnection(int id)
 	pthread_mutex_lock(&ht_mutex);
 	if(id >= 10)
 	{
-		delete clients[id];
+		delete clients_[id];
 	}
 	else
 	{
-		clients[id].inUse = false;
+		clients_[id]->inUse = false;
 	}
 	pthread_mutex_unlock(&ht_mutex);
 }
@@ -61,12 +61,12 @@ void HtPool::releaseClientConnection(int id)
 
 HtClient::HtClient(std::string host, int port, int id)
 {
-	client = new Thrift::client(host, port);
-	inUse = false;
-	id = id;
+	Thrift::Client* client = new Thrift::Client(host, port);
+	this->inUse = false;
+	this->id = id;
 }
 
-HT::~HtClient()
+HtClient::~HtClient()
 {
 	delete client;
 }

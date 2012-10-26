@@ -3,7 +3,7 @@
 	"libreqa" : {
 		"media" : "/media",
 		"root" : "",
-		//"host" : "0.0.0.0:8080",
+		"host" : "localhost:8080",
 		//"connection_string" : "sqlite3:db=cppcms.db;@pool_size=10",
 		//"connection_string" : "mysql:database=newpress;user=root;password=root;@pool_size=10;@use_prepared=on",
 		//"tex" : {
@@ -16,7 +16,7 @@
 	},
 	"service" : {
 		"api" : "http",
-		"port" : 8080
+		//"port" : 8080
 		//"api" : "fastcgi",
 		//"api" : "scgi",
 		//"socket" : "/tmp/sock"
@@ -32,7 +32,7 @@
 	//"views" : {
 	//	 "default_skin" : "green" ,
 	//	 "default_skin" : "orangesky" ,
-	//	 "paths" : [ "./" ],
+	//	 "paths" : [ "../media" ],
 	//	 "skins" : [ "green" ],
 	//},
 	"file_server" : {

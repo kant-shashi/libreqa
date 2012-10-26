@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 2.6)
 project(libreqa)
 
-include_directories(${CMAKE_SOURCE_DIR})
+include_directories(${CMAKE_SOURCE_DIR} /opt/hypertable/current/include /opt/local/include )
+include_directories(/opt/hypertable/current/include/thrift/)
+link_directories(/opt/local/lib /usr/local/lib /usr/lib /opt/hypertable/current/lib/)
 include(FindPkgConfig)
 include(CPack)
 
@@ -56,6 +58,7 @@ set(ADMIN_TEMPLATES
 
 set(QA_SRC
 	apps/questions/master.cpp
+	apps/htpool.cpp
 #	apps/blog/post.cpp
 #	apps/blog/page.cpp
 #	add_executable(cppblog_migrate sql/migrate.cpp)
@@ -119,7 +122,7 @@ include_directories(${INC_BOOSTER})
 include_directories(${INC_CPPCMS})
 
 add_executable(libreqa ${QA_SRC})
-target_link_libraries(libreqa ${LIB_CPPCMS})
+target_link_libraries(libreqa ${LIB_CPPCMS} HyperThrift HyperThriftConfig Hypertable HyperCommon thrift boost_system-mt)
 target_link_libraries(libreqa ${LIB_BOOSTER})
 target_link_libraries(libreqa ${IM_LIBRARIES})
 add_subdirectory(apps/questions)

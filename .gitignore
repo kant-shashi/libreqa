@@ -1,6 +1,9 @@
 .kdev4/
 build/
 libreqa.kdev4
+.cproject
+.project
+.settings/
 *.idx
 *.ind
 *.out

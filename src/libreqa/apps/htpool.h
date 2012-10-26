@@ -1,5 +1,5 @@
-#include "Common/Compat.h"
-#include "Common/System.h"
+#include <Common/Compat.h>
+#include <Common/System.h>
 
 #include <iostream>
 #include <fstream>
@@ -21,18 +21,18 @@ typedef struct HtClient {
 	bool inUse;
 	int id;
 	
-	HtClient();
+	HtClient(std::string, int, int);
 	~HtClient();
-};
+}HtClient;
 class HtPool {
-	vector<HtClient*> clients_;
+	std::vector<HtClient*> clients_;
 	int pool_size_;
-	string host_;
+	std::string host_;
 	int port_;
 	static HtPool* instance_;
-	HtPool(int pool_size, string host, int port);
+	HtPool(int pool_size, std::string host, int port);
 public:
 	HtClient* getClientConnection();
 	void releaseClientConnection(int id);
-	static HtPool* getInstance();
+	static HtPool* getInstance(int pool_size, std::string host, int port);
 };
