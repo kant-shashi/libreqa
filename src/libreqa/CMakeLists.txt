@@ -41,7 +41,9 @@ if(WIN32 OR CYGWIN)
 	# We use shared libraries...
 	add_definitions(-DDLL_EXPORT)
 endif()
-
+SET (CMAKE_C_COMPILER             "/usr/bin/clang")
+SET (CMAKE_CXX_COMPILER             "/usr/bin/clang++")
+SET (CMAKE_C_FLAGS                "-Wall")
 set(SKINS green)
 
 set(ADMIN_TEMPLATES 
