@@ -43,7 +43,7 @@ if(WIN32 OR CYGWIN)
 endif()
 SET (CMAKE_C_COMPILER             "/usr/bin/clang")
 SET (CMAKE_CXX_COMPILER             "/usr/bin/clang++")
-SET (CMAKE_C_FLAGS                "-Wall")
+SET (CMAKE_C_FLAGS                "-Wall std=c99")
 set(SKINS green)
 
 set(ADMIN_TEMPLATES 

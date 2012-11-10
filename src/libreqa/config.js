@@ -14,21 +14,25 @@
 			// "output_dir" : "/var/www/media/tex"
 		//}
 	},
+	"daemon" : {
+		"enable" : "true",
+		"user" : "www-data",
+	},
 	"service" : {
-		"api" : "http",
+		//"api" : "http",
 		//"port" : 8080
-		//"api" : "fastcgi",
+		"api" : "fastcgi",
 		//"api" : "scgi",
-		//"socket" : "/tmp/sock"
+		//"socket" : "/tmp/libreqa"
 	},
-	"http" : {
-		"script" : "/",
-		"rewrite" : [
-			{ "regex" : "/media(/.*)?", "pattern" : "$0" },
-			{ "regex" : ".*" , "pattern" : "/$0" }
-		]
+	//"http" : {
+	//	"script" : "/",
+	//	"rewrite" : [
+	//		{ "regex" : "/media(/.*)?", "pattern" : "$0" },
+	//		{ "regex" : ".*" , "pattern" : "/$0" }
+	//	]
 		
-	},
+	//},
 	//"views" : {
 	//	 "default_skin" : "green" ,
 	//	 "default_skin" : "orangesky" ,
